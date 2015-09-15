@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <!--Here is the tabs definition-->
+        <medma translate="label" module="marketplace">
+            <label>Medma</label>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        </medma>
+    </tabs>
+    <sections>
+		<marketplace translate="label" module="marketplace">
+			<class>separator-top</class>
+            <label>Market Place</label>
+            <tab>medma</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<extension_version translate="label" module="marketplace">
+                    <frontend_model>marketplace/adminhtml_system_config_fieldset_extension</frontend_model>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </extension_version>
+                <general translate="label">
+                    <label>General Options</label>                    
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<vendor_role translate="label">
+                            <label>Vendor Role</label>
+                            <comment>Please select the role which will work as vendor role.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>marketplace/system_config_source_roles</source_model>
+                        </vendor_role>                        
+						<product_view_layout>
+							<label>Product View Layout</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>page/source_layout</source_model>
+						</product_view_layout>
+						<shop_info_display>
+							<label>Shop Information Disaply on</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>marketplace/system_config_source_shopInfo</source_model>
+						</shop_info_display>
+					</fields>
+				</general>
+				<review translate="label">
+		            <label>Review Options</label>		            
+		            <sort_order>20</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		            <fields>
+						<page_size translate="label">
+							<label>Reviews per Page on Grid Allowed Values</label>
+							<comment>Enter comma separated page size.</comment>
+							<frontend_type>text</frontend_type>
+							<validate>validate-per-page-value-list input-text</validate>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+		                </page_size>
+					</fields>
+				</review>
+				<vendor_registration>
+					<label>Vendor Registration Options</label>		            
+		            <sort_order>30</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		            <fields>
+						<files_allowed translate="label">
+							<label>File(s) allowed to upload</label>
+							<comment>Enter comma separated file type. For Example, jpg, jpeg, pdf, png</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+		                </files_allowed>
+		                <max_allowed_file_size translate="label">
+							<label>Maximum allowed file size</label>
+							<comment>Please enter maximum allowed file size in Mb(s).</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+		                </max_allowed_file_size>
+						<request_seller_top_link translate="label" module="adminhtml">
+							<label>Show Seller Registration link to Top Links</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+						 </request_seller_top_link>
+						 <request_seller_label translate="label">
+							<label>Show Seller Registration label to Top Links</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+		                </request_seller_label>
+					</fields>
+				</vendor_registration>
+				<email translate="label">
+		            <label>New Vendor Order Email Options</label>				
+		            <frontend_type>select</frontend_type>
+		            <sort_order>40</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+					<fields>
+						<email_sender translate="label" module="adminhtml">
+							<label>New Vendor Order Email Sender</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_email_identity</source_model>
+		               </email_sender>
+		               <email_template translate="label" module="adminhtml">
+                            <label>New Vendor Order Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                       </email_template>
+					</fields>
+				</email>
+				<vendor_registration_email>
+					<label>Vendor Registration Email</label>				
+		            <frontend_type>select</frontend_type>
+		            <sort_order>50</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		            <fields>
+						<enable_registration_email translate="label" module="adminhtml">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+		               </enable_registration_email>
+		               <email_receiver translate="label">
+							<label>Receive Vendor Registration Notification Email On</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_registration_email>1</enable_registration_email></depends>
+                        </email_receiver>
+                        <email_template translate="label" module="adminhtml">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_registration_email>1</enable_registration_email></depends>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                       </email_template>
+					</fields>
+				</vendor_registration_email>
+				<vendor_activation_email>
+					<label>Vendor Activation Email</label>				
+		            <frontend_type>select</frontend_type>
+		            <sort_order>60</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		            <fields>
+						<active_vendor_email translate="label" module="adminhtml">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+		               </active_vendor_email>
+		               <email_sender translate="label">
+							<label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><active_vendor_email>1</active_vendor_email></depends>
+                        </email_sender>
+                        <email_template translate="label" module="adminhtml">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><active_vendor_email>1</active_vendor_email></depends>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                       </email_template>
+					</fields>
+				</vendor_activation_email>
+				<registration_confirmation_email>
+					<label>Registration Confirmation Email</label>				
+		            <frontend_type>select</frontend_type>
+		            <sort_order>70</sort_order>
+		            <show_in_default>1</show_in_default>
+		            <show_in_website>1</show_in_website>
+		            <show_in_store>1</show_in_store>
+		            <fields>
+						<enabled translate="label" module="adminhtml">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+		               </enabled>
+		               <email_sender translate="label">
+							<label>Email Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </email_sender>
+                        <email_template translate="label" module="adminhtml">
+                            <label>Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                       </email_template>
+					</fields>
+				</registration_confirmation_email>
+			</groups>
+		</marketplace>
+	</sections>
+</config>

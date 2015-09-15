@@ -1,0 +1,42 @@
+<div class="entry-edit category-mapping">
+		<div class="entry-edit-head">
+				<h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__("Category Ids") ?></h4>
+		</div>
+		<fieldset>
+				<legend><?php echo $this->__("Category Ids") ?></legend>
+				<span>
+						<?php
+						$i=0;
+						foreach ($this->getStores() as $_eachStoreId):
+								$_categories	=	$this->getRootCategories($_eachStoreId);
+						?>
+								<?php //$_categories = Mage::getModel('catalog/category') ->load(2); ?>
+								<?php if (count($_categories) > 0): ?>
+								<ul id="tree<?php echo $i?>" class="ui-widget-daredevel-checkboxTree ui-widget ui-widget-content">
+										<?php foreach($_categories as $_category): ?>
+												<li>
+														<div class="category-mapping">
+																<div class="category-name"><?php echo $_category->getName().' (ID: '.$_category->getId().')'?></div>
+														</div>
+														<?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+														<?php $_subcategories = $_category->getChildrenCategories() ?>
+														<?php if (count($_subcategories) > 0): ?>
+																		<?php echo $this->getCategoriesRecursively($_subcategories) ?>
+														<?php endif; ?>														
+												</li>
+										<?php endforeach; ?>
+								</ul>
+								<?php endif; ?>
+								<script class="jquery" lang="text/javascript">
+									jQuery.noConflict();
+	
+									jQuery(document).ready(function(){
+													jQuery('#tree'+<?php echo $i ?>).checkboxTree();
+									});
+								</script>
+						<?php $i++; 
+						endforeach;
+						?>
+			</span>
+		</fieldset>
+</div>

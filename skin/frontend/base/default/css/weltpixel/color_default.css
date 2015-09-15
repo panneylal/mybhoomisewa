@@ -1,0 +1,62 @@
+
+
+
+    .product_swatch img { width: 30px; }
+    .product_swatch img { height: 30px; }
+
+    .swatches .filter_checkbox .swatch-container{ width: 30px; }
+    .swatches .filter_checkbox .swatch-container{ height: 30px; }
+
+    .customer-account-login #page-body-section-02, .customer-account-forgotpassword #page-body-section-02, .customer-account-create #page-body-section-02  {
+    background-image: url(http://localhost/bhoomisewa/media/cleo/default/bg.jpg.png);
+    }
+
+
+    .w, .toolbar, .products-list, #wpmm-nav, .wpmm-nav-content-inner  {max-width: 1440px ; }
+
+
+
+    #wrapper { max-width: 100%; margin:0 auto; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#wpmm-nav li.nav-2 > a {
+}
+li.nav-2 > .wpmm-nav-content {
+    background-size: cover;
+}

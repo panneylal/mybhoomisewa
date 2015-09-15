@@ -1,0 +1,153 @@
+title,path,value
+"Theme settings/Header options/Header style",weltpixel_selector/headeroptions/header_style,header-v2.0.phtml
+"Theme settings/Header options/Sticky Header",weltpixel_selector/headeroptions/sticky_header,1
+"Theme settings/Header options/Sticky Header on mobile also",weltpixel_selector/headeroptions/sticky_header_mobile,1
+"Theme settings/Header options/Search design",weltpixel_selector/headeroptions/search_design,form.mini-v1.phtml
+"Theme settings/Header options/Disable compare feature",weltpixel_selector/headeroptions/disable_compare,0
+"Theme settings/Category page options/Quick view design",weltpixel_selector/categoryoptions/quickview_design,version2
+"Theme settings/Category page options/Show price",weltpixel_selector/categoryoptions/showprice,yes
+"Theme settings/Category page options/Show ratings",weltpixel_selector/categoryoptions/showratings,yes
+"Theme settings/Category page options/New and sale tag",weltpixel_selector/categoryoptions/newsaletag,yes
+"Theme settings/Category page options/Name",weltpixel_selector/categoryoptions/showname,yes
+"Theme settings/Category page options/Add to cart button",weltpixel_selector/categoryoptions/addtocart,yes
+"Theme settings/Category page options/Add to wishlist button",weltpixel_selector/categoryoptions/addtowishlist,yes
+"Theme settings/Category page options/Add to compare button",weltpixel_selector/categoryoptions/addtocompare,yes
+"Theme settings/Category page options/Quickview",weltpixel_selector/categoryoptions/enablequickview,yes
+"Theme settings/Category page options/Add to cart behaviour",weltpixel_selector/categoryoptions/addtocartbutton,lightbox
+"Theme settings/Category page options/One line title",weltpixel_selector/categoryoptions/onelinetitle,yes
+"Theme settings/Category page options/Equal height of grid product image",weltpixel_selector/categoryoptions/equal_grid_images,0
+"Theme settings/Category page options/Image size",weltpixel_selector/categoryoptions/grid_image_size,500
+"Theme settings/Sidebar options/Recently compared products enable",weltpixel_selector/sidebaroptions/recentcompare,1
+"Theme settings/Sidebar options/Pool enable",weltpixel_selector/sidebaroptions/poolenable,1
+"Theme settings/Sidebar options/Compare products enable",weltpixel_selector/sidebaroptions/compareenable,1
+"Theme settings/Sidebar options/Newsletter signup enable",weltpixel_selector/sidebaroptions/newslettersignup,1
+"Theme settings/Sidebar options/Tags enable",weltpixel_selector/sidebaroptions/tagsenable,1
+"Theme settings/Sidebar options/Recently Viewed enable",weltpixel_selector/sidebaroptions/recentview,1
+"Theme settings/Product page options/Main image width (px)",weltpixel_selector/productpageoptions/imagewidth,520
+"Theme settings/Product page options/Secondary Column Location",weltpixel_selector/productpageoptions/secondary_column_location,none
+"Theme settings/Product page options/Secondary Column Options",weltpixel_selector/productpageoptions/secondary_column_options,replace
+"Theme settings/Product page options/Image column width",weltpixel_selector/productpageoptions/image_column_width,9
+"Theme settings/Product page options/Main product info width",weltpixel_selector/productpageoptions/product_info_width,3
+"Theme settings/Product page options/Secondary column width",weltpixel_selector/productpageoptions/secondary_column_width,3
+"Theme settings/Product page options/Number of up-sells",weltpixel_selector/productpageoptions/upsaleproductsnumber,10
+"Theme settings/Product page options/Number of related",weltpixel_selector/productpageoptions/relatedproductsnumber,10
+"Theme settings/Product page options/Zoom image width (px)",weltpixel_selector/productpageoptions/zoomwidth,900
+"Theme settings/Product page options/Use ajax for add to cart",weltpixel_selector/productpageoptions/ajax_add_to_cart,1
+"Theme settings/Product page options/Confirmation box hide after specified seconds",weltpixel_selector/productpageoptions/ajax_add_to_cart_confirmation_hide,5
+"Theme settings/Product page options/Use ajax for add to compare",weltpixel_selector/productpageoptions/ajax_add_to_compare,0
+"Theme settings/Product page options/Product Image Style",weltpixel_selector/productpageoptions/product_image,double
+"Theme settings/Product page options/Image Gallery Position",weltpixel_selector/productpageoptions/gallery_location,none
+"Theme settings/Product page options/Product Information Format",weltpixel_selector/productpageoptions/product_info_format,accordion
+"Theme settings/Product page options/Product Information Layout",weltpixel_selector/productpageoptions/product_info_layout,twocolumns
+"Theme settings/Product page options/Smart box",weltpixel_selector/productpageoptions/smart_box,gender
+"Theme settings/Product page options/Display sku",weltpixel_selector/productpageoptions/display_sku,1
+"Theme settings/Product page options/Display product availability",weltpixel_selector/productpageoptions/display_availability,1
+"Theme settings/Product page options/Disable compare feature",weltpixel_selector/productpageoptions/disable_compare,0
+"Theme settings/Customization settings/Website width",weltpixel_selector/customization_settings/website_width,1440px
+"Theme settings/Customization settings/Display Mode",weltpixel_selector/customization_settings/display_mode,0
+"Theme settings/Customization settings/Enable Animation",weltpixel_selector/customization_settings/enable_animation,1
+"Theme settings/Customization settings/Load Custom Css",weltpixel_selector/customization_settings/customcss,1
+"Theme settings/Customization settings/Enable Retina Images",weltpixel_selector/customization_settings/retina,0
+"Theme settings/Customization settings/Enable Free Shipping Message",weltpixel_selector/customization_settings/freeshipping,1
+"Theme settings/Customization settings/Enable Free Shipping Calculator Message",weltpixel_selector/customization_settings/freeshipping_calculator,0
+"Theme settings/Customization settings/Login background image",weltpixel_selector/customization_settings/login_backgroundimage,default/bg.jpg.png
+"Theme settings/Customization settings/Google Api Key",weltpixel_selector/customization_settings/google_api_key,
+"Theme settings/Customization settings/Contact form longitude",weltpixel_selector/customization_settings/contact_form_longitude,
+"Theme settings/Customization settings/Contact form latitude",weltpixel_selector/customization_settings/contact_form_latitude,
+"Color settings/General/Text color",weltpixel_colorsettings/general/text_color,
+"Color settings/General/Link color",weltpixel_colorsettings/general/link_color,
+"Color settings/General/Link hover color",weltpixel_colorsettings/general/link_hover_color,
+"Color settings/General/H1 color",weltpixel_colorsettings/general/h1_color,
+"Color settings/General/H2 color",weltpixel_colorsettings/general/h2_color,
+"Color settings/General/H3 color",weltpixel_colorsettings/general/h3_color,
+"Color settings/Buttons/Button background color",weltpixel_colorsettings/buttons/button_background_color,
+"Color settings/Buttons/Button text color",weltpixel_colorsettings/buttons/button_text_color,
+"Color settings/Buttons/Button hover background color",weltpixel_colorsettings/buttons/button_hover_background_color,
+"Color settings/Buttons/Button hover text color",weltpixel_colorsettings/buttons/button_hover_text_color,
+"Color settings/Buttons/Button border color",weltpixel_colorsettings/buttons/button_border_color,
+"Color settings/Buttons/Button border hover color",weltpixel_colorsettings/buttons/button_border_hover_color,
+"Color settings/Buttons/Button Action Background Color",weltpixel_colorsettings/buttons/button_action_background_color,
+"Color settings/Buttons/Button Action Text Color",weltpixel_colorsettings/buttons/button_action_text_color,
+"Color settings/Buttons/Button Action Hover Background Color",weltpixel_colorsettings/buttons/button_action_hover_background_color,
+"Color settings/Buttons/Button Action Hover Text Color",weltpixel_colorsettings/buttons/button_action_hover_text_color,
+"Color settings/New and Sale labels/Label ""New"" Background Color",weltpixel_colorsettings/new_and_sale_labels/label_new_background_color,
+"Color settings/New and Sale labels/Label ""New"" Text Color",weltpixel_colorsettings/new_and_sale_labels/label_new_text_color,
+"Color settings/New and Sale labels/Label ""Sale"" Background Color",weltpixel_colorsettings/new_and_sale_labels/label_sale_background_color,
+"Color settings/New and Sale labels/Label ""Sale"" Text Color",weltpixel_colorsettings/new_and_sale_labels/label_sale_text_color,
+"Color settings/Misc elements/Product page price color",weltpixel_colorsettings/misc_elements/product_page_price_color,
+"Color settings/Misc elements/Category page price color grid view",weltpixel_colorsettings/misc_elements/category_page_price_color_grid_view,
+"Color settings/Misc elements/Category page price color list view",weltpixel_colorsettings/misc_elements/category_page_price_color_list_view,
+"Color settings/Misc elements/Page background color",weltpixel_colorsettings/misc_elements/page_background_color,
+"Color settings/Misc elements/Content area background",weltpixel_colorsettings/misc_elements/content_area_background,
+"Color settings/Header version 1/Header background",weltpixel_colorsettings/header_version_1/header_background,
+"Color settings/Header version 1/Text color",weltpixel_colorsettings/header_version_1/text_color,
+"Color settings/Header version 1/Link color",weltpixel_colorsettings/header_version_1/link_color,
+"Color settings/Header version 1/Link hover color",weltpixel_colorsettings/header_version_1/link_hover_color,
+"Color settings/Header version 1/Icons color",weltpixel_colorsettings/header_version_1/icons_color,
+"Color settings/Header version 1/Icons hover color",weltpixel_colorsettings/header_version_1/icons_hover_color,
+"Color settings/Header version 2/Header background",weltpixel_colorsettings/header_version_2/header_background,
+"Color settings/Header version 2/Text color",weltpixel_colorsettings/header_version_2/text_color,
+"Color settings/Header version 2/Link color",weltpixel_colorsettings/header_version_2/link_color,
+"Color settings/Header version 2/Link hover color",weltpixel_colorsettings/header_version_2/link_hover_color,
+"Color settings/Header version 2/Icons color",weltpixel_colorsettings/header_version_2/icons_color,
+"Color settings/Header version 2/Icons hover color",weltpixel_colorsettings/header_version_2/icons_hover_color,
+"Color settings/Header menu/Background color",weltpixel_colorsettings/header_menu/background_color,
+"Color settings/Header menu/Text color",weltpixel_colorsettings/header_menu/text_color,
+"Color settings/Search box/Background color",weltpixel_colorsettings/search_box/background_color,
+"Color settings/Search box/Text color",weltpixel_colorsettings/search_box/text_color,
+"Color settings/Search box/Border color",weltpixel_colorsettings/search_box/border_color,
+"Color settings/Dropdown boxes header/Background color",weltpixel_colorsettings/dropdown_boxes_header/background_color,
+"Color settings/Dropdown boxes header/Background hover color",weltpixel_colorsettings/dropdown_boxes_header/background_hover_color,
+"Color settings/Dropdown boxes header/Text color",weltpixel_colorsettings/dropdown_boxes_header/text_color,
+"Color settings/Dropdown boxes header/Hover color",weltpixel_colorsettings/dropdown_boxes_header/hover_color,
+"Color settings/Footer/Background color",weltpixel_colorsettings/footer/background_color,
+"Color settings/Footer/Text color",weltpixel_colorsettings/footer/text_color,
+"Color settings/Footer/Link color",weltpixel_colorsettings/footer/link_color,
+"Color settings/Footer/Link hover color",weltpixel_colorsettings/footer/link_hover_color,
+"Color settings/Footer/Heading color",weltpixel_colorsettings/footer/heading_color,
+"Color settings/Footer/Newsletter button color",weltpixel_colorsettings/footer/newsletter_button_color,
+"Color settings/Footer/Newsletter button hover color",weltpixel_colorsettings/footer/newsletter_button_hover_color,
+"Color settings/Footer/Newsletter button text color",weltpixel_colorsettings/footer/newsletter_button_text_color,
+"Color settings/Footer/Newsletter button text hover color",weltpixel_colorsettings/footer/newsletter_button_text_hover_color,
+"Color settings/Footer/Newsletter button border color",weltpixel_colorsettings/footer/newsletter_button_border_color,
+"Color settings/Footer/Newsletter button border hover color",weltpixel_colorsettings/footer/newsletter_button_border_hover_color,
+"Color settings/Footer/Newsletter box background",weltpixel_colorsettings/footer/newsletter_box_background,
+"Color settings/Footer/Newsletter box border color",weltpixel_colorsettings/footer/newsletter_box_border_color,
+"Color settings/Footer/Newsletter box text color",weltpixel_colorsettings/footer/newsletter_box_text_color,
+"Color settings/Pre footer section/Background color",weltpixel_colorsettings/pre_footer/background_color,
+"Color settings/Pre footer section/Text color",weltpixel_colorsettings/pre_footer/text_color,
+"Color settings/Pre footer section/Link color",weltpixel_colorsettings/pre_footer/link_color,
+"Color settings/Pre footer section/Link hover color",weltpixel_colorsettings/pre_footer/link_hover_color,
+"Color settings/Sub footer section/Background color",weltpixel_colorsettings/sub_footer/background_color,
+"Color settings/Sub footer section/Text color",weltpixel_colorsettings/sub_footer/text_color,
+"Color settings/Sub footer section/Link color",weltpixel_colorsettings/sub_footer/link_color,
+"Color settings/Sub footer section/Link hover color",weltpixel_colorsettings/sub_footer/link_hover_color,
+"Color settings/Layered navigation/Link color",weltpixel_colorsettings/layered_navigation/link_color,
+"Color settings/Layered navigation/Background color",weltpixel_colorsettings/layered_navigation/background_color,
+"Color settings/Layered navigation/Text color",weltpixel_colorsettings/layered_navigation/text_color,
+"Color settings/Layered navigation/Price slider color",weltpixel_colorsettings/layered_navigation/price_slider_color,
+"Color settings/Ajaxsearch/Product name color",weltpixel_colorsettings/ajaxsearch/name_color,
+"Color settings/Ajaxsearch/Product name hover color",weltpixel_colorsettings/ajaxsearch/name_hover_color,
+"Color settings/Ajaxsearch/Hover color",weltpixel_colorsettings/ajaxsearch/hover_color,
+"Color settings/Ajaxsearch/Description color",weltpixel_colorsettings/ajaxsearch/short_descr_color,
+"Color settings/Ajaxsearch/Description hover color",weltpixel_colorsettings/ajaxsearch/short_descr_hover_color,
+"Color settings/Ajaxsearch/Price color",weltpixel_colorsettings/ajaxsearch/price_color,
+"Color settings/Ajaxsearch/Price hover color",weltpixel_colorsettings/ajaxsearch/price_hover_color,
+"Color settings/Social media icons/Social media icons color",weltpixel_colorsettings/social_media_icons/social_media_icons_color,
+"Color settings/Social media icons/Social media icons hover color",weltpixel_colorsettings/social_media_icons/social_media_icons_hover_color,
+"Font settings/Font family Options/Basic Font Settings",weltpixel_fontsettings/font_family/basic_font_heading,
+"Font settings/Font family Options/Basic Google Font Family",weltpixel_fontsettings/font_family/basic_font,0
+"Font settings/Font family Options/Basic Font Character Set",weltpixel_fontsettings/font_family/basic_characterset,
+"Font settings/Font family Options/Basic Font Weight",weltpixel_fontsettings/font_family/basic_weight,400
+"Font settings/Font family Options/Headings Font Settings",weltpixel_fontsettings/font_family/headings_font_heading,
+"Font settings/Font family Options/Headings Google Font Family",weltpixel_fontsettings/font_family/headings_font,0
+"Font settings/Font family Options/Headings Font Character Set",weltpixel_fontsettings/font_family/headings_characterset,
+"Font settings/Font family Options/Headings Font Weight",weltpixel_fontsettings/font_family/headings_weight,400
+"Font settings/Font Size Options/Basic Font Size",weltpixel_fontsettings/font_size/basic,
+"Font settings/Font Size Options/H1 Font Size",weltpixel_fontsettings/font_size/h1,
+"Font settings/Font Size Options/H2 Font Size",weltpixel_fontsettings/font_size/h2,
+"Font settings/Font Size Options/H3 Font Size",weltpixel_fontsettings/font_size/h3,
+"Font settings/Font Size Options/H4 Font Size",weltpixel_fontsettings/font_size/h4,
+"Font settings/Font Size Options/Product Page Headings Font Size",weltpixel_fontsettings/font_size/product_page_headings,
+"Font settings/Font Size Options/Category Page Product List and Grid Name Font Size",weltpixel_fontsettings/font_size/category_page_product_list_grid_name,
+"Font settings/Font Size Options/Category Page Title Font Size",weltpixel_fontsettings/font_size/category_page_title,
