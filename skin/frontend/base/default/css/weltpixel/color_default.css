@@ -1,6 +1,8 @@
 
 
-
+            .wp-ai-3  {   background: url(http://localhost/bhoomisewa/media/\layerednavigation\layered_swatches\155\3\30x30\categoryImages/b3.jpg) }
+                        .wp-ai-7  {   background: url() }
+            
     .product_swatch img { width: 30px; }
     .product_swatch img { height: 30px; }
 
@@ -59,4 +61,18 @@
 }
 li.nav-2 > .wpmm-nav-content {
     background-size: cover;
+}
+#wpmm-nav li.nav-2-1 > a {
+}
+#wpmm-nav li.nav-2-1-1 > a {
+}
+#wpmm-nav li.nav-2-2 > a {
+}
+#wpmm-nav li.nav-2-2-1 > a {
+}
+#wpmm-nav li.nav-2-2-2 > a {
+}
+#wpmm-nav li.nav-2-2-3 > a {
+}
+#wpmm-nav li.nav-2-2-4 > a {
 }
