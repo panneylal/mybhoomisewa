@@ -3,7 +3,7 @@ $_helper = Mage::helper('weltpixel_selector');
 ?>
 
 <script type="text/javascript">
-            
+
     window.onload = loadScript;
 
     function loadScript() {
@@ -18,24 +18,24 @@ if (strlen($apiKey)):
 <?php endif; ?>
                 script.src = source;
                 document.body.appendChild(script);
-            }            
-               
-            
-            function init() {        
+            }
+
+
+            function init() {
 <?php if ($_helper->getContactLatitude() && $_helper->getContactLatitude()): ?>
                     var myLatlng = new google.maps.LatLng(<?php echo $_helper->getContactLatitude() ?>, <?php echo $_helper->getContactLongitude() ?>) ;
 <?php else: ?>
-                    var myLatlng = new google.maps.LatLng(40.6700, -73.9400) ; //some default 
+                    var myLatlng = new google.maps.LatLng(40.6700, -73.9400) ; //some default
 <?php endif; ?>
                 var mapOptions = {
                     zoom: 11,
                     center: myLatlng,
                     styles: [	{		featureType:'water',		stylers:[{color:'#46bcec'},{visibility:'on'}]	},{		featureType:'landscape',		stylers:[{color:'#f2f2f2'}]	},{		featureType:'road',		stylers:[{saturation:-100},{lightness:45}]	},{		featureType:'road.highway',		stylers:[{visibility:'simplified'}]	},{		featureType:'road.arterial',		elementType:'labels.icon',		stylers:[{visibility:'off'}]	},{		featureType:'administrative',		elementType:'labels.text.fill',		stylers:[{color:'#444444'}]	},{		featureType:'transit',		stylers:[{visibility:'off'}]	},{		featureType:'poi',		stylers:[{visibility:'off'}]	}]
-                };                                
-                
+                };
+
                 var mapElement = document.getElementById('map');
                 var map = new google.maps.Map(mapElement, mapOptions);
-                
+
                  marker = new google.maps.Marker({
                     map:map,
                     draggable: false,
