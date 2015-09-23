@@ -6,6 +6,7 @@
     .product_swatch img { width: 30px; }
     .product_swatch img { height: 30px; }
 
+    .swatches .filter_checkbox .swatch-container{ border-radius: 1px; -moz-border-radius: 1px; -webkit-border-radius: 1px;-ms-border-radius: 1px; }
     .swatches .filter_checkbox .swatch-container{ width: 30px; }
     .swatches .filter_checkbox .swatch-container{ height: 30px; }
 
@@ -75,4 +76,14 @@ li.nav-2 > .wpmm-nav-content {
 #wpmm-nav li.nav-2-2-3 > a {
 }
 #wpmm-nav li.nav-2-2-4 > a {
+}
+#wpmm-nav li.nav-3 > a {
+}
+li.nav-3 > .wpmm-nav-content {
+    background-size: cover;
+}
+#wpmm-nav li.nav-4 > a {
+}
+li.nav-4 > .wpmm-nav-content {
+    background-size: cover;
 }
