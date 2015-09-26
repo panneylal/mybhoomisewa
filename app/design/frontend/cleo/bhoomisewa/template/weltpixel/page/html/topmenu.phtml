@@ -26,7 +26,7 @@
                 $child->setIsLast($counter == $childrenCount);
                 $child->setPositionClass($menu->getPositionClass() . '-' . $counter);
             ?>
-            <li<?php echo $this->getRenderedMenuItemAttributes($child); ?>>
+            <li <?php echo $this->getRenderedMenuItemAttributes($child); ?>>
                 <a href="<?php echo $child->getUrl(); ?>" class="<?php echo $child->getClass(); ?> nav-link<?php if ($child->getTitleImage()): ?> has-title-image<?php endif; ?>">
                     <?php if ($child->getTitleImage()): ?>
                     <img src="<?php echo $child->getTitleImage() ?>" alt="<?php echo $this->escapeHtml($child->getName()); ?>" />
@@ -127,6 +127,14 @@
                 <?php endif; ?>
             </li>
             <?php ++$counter; endforeach; ?>
+            <li class="level0 nav-3 level-top menu_fullwidth"><a class="level-top menu_fullwidth nav-link"
+              href="http://localhost/bhoomisewa/index.php/about-us"> <span>About us</span> </a>
+              <span id="wpmm-closer"></span>
+            </li>
+            <li class="level0 nav-4 level-top last menu_fullwidth"><a class="level-top menu_fullwidth nav-link" 
+              href="http://localhost/bhoomisewa/index.php/contacts"> <span>Contact us</span> </a>
+              <span id="wpmm-closer"></span>
+            </li>
         </ul>
         <div class="wpmm-mobile-cms">
             <?php echo $this->getChildHtml('cms_weltpixel_mm_custom_mobile_block'); ?>

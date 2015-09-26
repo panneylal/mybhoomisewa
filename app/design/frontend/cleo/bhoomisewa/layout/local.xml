@@ -299,7 +299,14 @@
             <action method="removeLinkByUrl">
                 <url helper="customer/getAccountUrl"/>
             </action>
-            <remove name="wishlist_link"/>
+            <!--<remove name="wishlist_link"/> -->
+            <action method="addLink" ifconfig="marketplace/vendor_registration/request_seller_top_link" translate="Request Seller">
+				        <label helper="marketplace/getSellerRegistrationLabelConfig"/>
+				        <url>marketplace/vendor/register</url>
+				        <title>Request Seller</title>
+				        <prepare>true</prepare>
+			      </action>
+            
 
             <action method="addLink" translate="label title" module="customer">
                 <label>Account</label>
