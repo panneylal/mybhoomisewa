@@ -1,3 +1,4 @@
+    @import url(https://fonts.googleapis.com/css?family=Abel:300&subset=latin);
 
 
             .wp-ai-3  {   background: url(http://localhost/bhoomisewa/media/\layerednavigation\layered_swatches\155\3\30x30\categoryImages/b3.jpg) }
@@ -48,6 +49,13 @@
 
 
 
+    body, p, input, select, textarea, th, td, b, strong, caption, th, td,
+    #product-info .product-description,
+    #product-reviews p, #product-reviews label
+    {
+            font-family: 'Abel', sans-serif !important;
+                font-weight: 300 !important;
+        }
 
 
 
