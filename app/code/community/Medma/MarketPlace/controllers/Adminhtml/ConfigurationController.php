@@ -19,6 +19,11 @@
 **/
 class Medma_MarketPlace_Adminhtml_ConfigurationController extends Mage_Adminhtml_Controller_Action 
 {
+	protected function _isAllowed()
+	{
+		return true;
+	}
+	
 	protected function _initAction() 
 	{
         $this->loadLayout()->_setActiveMenu('vendor/configuration');

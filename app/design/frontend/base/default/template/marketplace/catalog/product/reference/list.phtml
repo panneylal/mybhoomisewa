@@ -1,0 +1,55 @@
+<?php
+/**
+ * Medma Marketplace
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Team
+ * that is bundled with this package of Medma Infomatix Pvt. Ltd.
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * Contact us Support does not guarantee correct work of this package
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * =================================================================
+ * 
+ * @category    Medma
+ * @package     Medma_MarketPlace
+**/
+?>
+
+<?php $referenceProducts = $this->getReferenceProducts(); ?>
+<?php if(isset($referenceProducts) && $referenceProducts->count()): ?>
+	<div style="margin-bottom: 20px;">
+		<table class="data-table" id="my-orders-table">
+			<colgroup>
+				<col>
+				<col width="1">
+			</colgroup>
+			<thead>
+				<tr class="first last">
+					<th><?php echo $this->__('Details'); ?></th>
+					
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($referenceProducts as $product): ?>
+					<tr>
+						<td>
+							<div><b><?php echo $product->getName(); ?></b></div>
+							<div><?php echo $this->getFormattedPrice($product->getFinalPrice()); ?></div>
+							<div><?php echo $this->__('Sold By: '); ?><a href="<?php echo $this->getVendorProfileUrl($product->getVendor()); ?>"><?php echo $this->getVendorInfo($product->getVendor())->getShopName(); ?></a></div>
+						</td>
+						<td>
+							<button type="button" title="<?php echo $this->__('View Product'); ?>" class="button btn-cart" onclick="setLocation('<?php echo $product->getProductUrl() ?>')">
+								<span><span><?php echo $this->__('View Product'); ?></span></span>
+							</button>
+						</td>
+					</tr>			
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+<?php endif; ?>
