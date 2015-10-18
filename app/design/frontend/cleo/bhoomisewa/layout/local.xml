@@ -306,7 +306,7 @@
 				        <title>Request Seller</title>
 				        <prepare>true</prepare>
 			      </action>
-            
+
 
             <action method="addLink" translate="label title" module="customer">
                 <label>Account</label>
@@ -320,6 +320,20 @@
         </reference>
 
         <reference  name="head">
+          <!-- angular js -->
+          <action method="addItem">
+            <type>skin_js</type>
+            <name>js/angular.min.js</name>
+          </action>
+          <action method="addItem">
+            <type>skin_js</type>
+            <name>js/angular-route.min.js</name>
+          </action>
+          <action method="addItem">
+            <type>skin_js</type>
+            <name>js/myApp.js</name>
+          </action>
+
             <!-- jQuery -->
             <action method="addJs">
                 <script>weltpixel/jquery-1.11.1.js</script>

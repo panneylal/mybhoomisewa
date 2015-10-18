@@ -106,6 +106,9 @@ class Mage_Api_Model_User extends Mage_Core_Model_Abstract
             $data['is_active']  = intval($this->getIsActive());
         }
 
+        if(!is_null($this->getIsVendor())) {
+            $data['is_vendor'] = intval($this->getIsVendor());
+        }
         $this->setData($data);
         $this->_getResource()->save($this);
         $this->_afterSave();

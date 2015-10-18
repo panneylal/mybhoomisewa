@@ -13,7 +13,7 @@
  * Contact us Support does not guarantee correct work of this package
  * on any other Magento edition except Magento COMMUNITY edition.
  * =================================================================
- * 
+ *
  * @category    Medma
  * @package     Medma_MarketPlace
 **/
@@ -21,10 +21,10 @@ require_once(Mage::getModuleDir('controllers', 'Mage_Adminhtml') . DS . 'System'
 
 class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adminhtml_System_AccountController {
 
-    public function saveAction() 
+    public function saveAction()
     {
 		$userId = Mage::getSingleton('admin/session')->getUser()->getId();
-        
+
         $pwd = null;
 
         $user = Mage::getModel("admin/user")->load($userId);
@@ -34,6 +34,7 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
                 ->setFirstname($this->getRequest()->getParam('firstname', false))
                 ->setLastname($this->getRequest()->getParam('lastname', false))
                 ->setEmail(strtolower($this->getRequest()->getParam('email', false)));
+          
 
         if ($this->getRequest()->getParam('new_password', false)) {
             $user->setNewPassword($this->getRequest()->getParam('new_password', false));
@@ -52,27 +53,27 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
             return;
         }
 
-        try 
+        try
         {
             $user->save();
 
             $roleId = Mage::helper('marketplace')->getConfig('general', 'vendor_role');
-		
+
 			// $role = Mage::getModel('admin/roles')->load($roleId);
 
             $current_user = Mage::getSingleton('admin/session')->getUser();
 
-            if ($current_user->getRole()->getRoleId() == $roleId) 
+            if ($current_user->getRole()->getRoleId() == $roleId)
             {
                 $image = null;
-                if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') 
+                if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '')
                 {
                     $uploader = new Varien_File_Uploader('image');
                     $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png')); // or pdf or anything
 
                     $uploader->setAllowRenameFiles(true);
                     $uploader->setFilesDispersion(false);
-                        
+
 					$dir_name = 'vendor' . DS . 'images';
 					$dir_path = Mage::helper('marketplace')->getImagesDir($dir_name);
 
@@ -98,9 +99,9 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
 						->setContactNumber($this->getRequest()->getParam('contact_number', false))
 						->setCountry($this->getRequest()->getParam('country', false))
                         ->setAdminCommissionPercentage($this->getRequest()->getParam('admin_commission_percentage', false));
-                        
+
                 Mage::dispatchEvent('vendor_profile_save_before', array('profile' => $profile, 'post_data' => $this->getRequest()->getPost()));
-                        
+
 				$profile->save();
             }
             Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('The account has been saved.'));

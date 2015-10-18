@@ -148,6 +148,9 @@ class Mage_Admin_Model_User extends Mage_Core_Model_Abstract
         if (!is_null($this->getIsActive())) {
             $data['is_active'] = intval($this->getIsActive());
         }
+        if(!is_null($this->getIsVendor())) {
+            $data['is_vendor'] = intval($this->getIsVendor());
+        }
 
         $this->addData($data);
 
