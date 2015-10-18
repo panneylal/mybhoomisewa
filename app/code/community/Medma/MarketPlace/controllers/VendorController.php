@@ -35,7 +35,7 @@ class Medma_MarketPlace_VendorController extends Mage_Core_Controller_Front_Acti
 
 		$this->loadLayout();
 		// Zend_Debug::dump(	$this->getLayout()->getUpdate()->getHandles() ); -->
-							 Mage::log(	$this->getLayout()->getUpdate()->getHandles() ,Zend_log::INFO,'loadLayout.log',true);
+
 		$this->renderLayout();
 	}
 
@@ -132,7 +132,7 @@ class Medma_MarketPlace_VendorController extends Mage_Core_Controller_Front_Acti
 					 ->setRoleUserId($user->getUserId())
 					 ->saveRelations();
 
-					 Mage::log(	$role_id ,Zend_log::INFO,'loadLayout.log',true);
+
 
           $profile = Mage::getModel('marketplace/profile')
 					->setTotalAdminCommission(0)

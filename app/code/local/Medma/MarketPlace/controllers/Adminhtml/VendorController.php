@@ -13,7 +13,7 @@
  * Contact us Support does not guarantee correct work of this package
  * on any other Magento edition except Magento COMMUNITY edition.
  * =================================================================
- * 
+ *
  * @category    Medma
  * @package     Medma_MarketPlace
 **/
@@ -30,7 +30,7 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
         $this->renderLayout();
     }
 
-    public function editAction() 
+    public function editAction()
     {
         $testId = $this->getRequest()->getParam('id');
         $testModel = Mage::getModel('admin/user')->load($testId);
@@ -63,23 +63,23 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
         $this->_forward('edit');
     }
 
-    public function saveAction() 
-    {	
+    public function saveAction()
+    {
 		if ($data = $this->getRequest()->getPost())
-		{	
-            try 
+		{
+            try
             {
                 $model = Mage::getModel('admin/user');
 
                 $model->setUserId($this->getRequest()->getParam('id'))
-                        ->setData($data);                
+                        ->setData($data);
 
                 if ($model->hasNewPassword() && $model->getNewPassword() === '') {
                     $model->unsNewPassword();
                 }
                 if ($model->hasPasswordConfirmation() && $model->getPasswordConfirmation() === '') {
                     $model->unsPasswordConfirmation();
-                }                
+                }
 
                 $result = $model->validate();
 
@@ -136,34 +136,33 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
 						->setShopName($this->getRequest()->getParam('shop_name', false))
 						->setMessage($this->getRequest()->getParam('message', false))
 						->setContactNumber($this->getRequest()->getParam('contact_number', false))
-						->setCountry($this->getRequest()->getParam('country', false))						
+						->setCountry($this->getRequest()->getParam('country', false))
                         ->setAdminCommissionPercentage($this->getRequest()->getParam('admin_commission_percentage', false));
-                        
+
                 Mage::dispatchEvent('vendor_profile_save_before', array('profile' => $profile, 'post_data' => $this->getRequest()->getPost()));
-                
+
 				$profile->save();
-                        
+
                 $proofList = Mage::helper('marketplace')->getVarificationProofTypeList();
                 if(count($proofList) > 1)
 					$profile->setProofType($this->getRequest()->getParam('proof_type', false))->save();
-					
+
 				if(Mage::helper('marketplace/email')->isEmailAllow('vendor_activation_email', 'active_vendor_email'))
 					if($data['is_active'] == "1")
 						Mage::helper('marketplace/email')->vendorActivateEmail($data);
-						
-						
+
+
 				/* Product Disable if vendor Inactive Starts */
-				
 				$this->disableProducts($data['is_active'], $data['user_id']);
-				
+
 				/* Product Disable if vendor Inactive Ends */
 
                 Mage::getSingleton('adminhtml/session')->addSuccess('Vendor has been saved.');
                 Mage::getSingleton('adminhtml/session')->settestData(false);
                 $this->_redirect('*/*/');
                 return;
-            } 
-            catch (Exception $e) 
+            }
+            catch (Exception $e)
             {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 Mage::getSingleton('adminhtml/session')->settestData($this->getRequest()->getPost());
@@ -173,15 +172,15 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
         }
         $this->_redirect('*/*/');
     }
-    
+
     public function disableProducts($status, $userId)
     {
 		$productIds = Mage::getModel('catalog/product')->getCollection()
 			->addAttributeToFilter('vendor', $userId)
 			->getAllIds();
-			
+
 		$productModel = Mage::getModel('catalog/product');
-		
+
 		foreach($productIds as $id)
 		{
 			$productModel->load($id);
@@ -189,35 +188,35 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
 			$productModel->save();
 		}
 	}
-	
+
 	public function deleteProducts($userId)
     {
 		$productIds = Mage::getModel('catalog/product')->getCollection()
 			->addAttributeToFilter('vendor', $userId)
 			->getAllIds();
-			
+
 		$productModel = Mage::getModel('catalog/product');
-		
+
 		foreach($productIds as $id)
 			$productModel->load($id)
 				->delete();
 	}
 
-    public function deleteAction() 
+    public function deleteAction()
     {
         if ($this->getRequest()->getParam('id') > 0) {
-            try 
+            try
             {
 				$this->deleteProducts($this->getRequest()->getParam('id'));
-				
+
                 $testModel = Mage::getModel('admin/user');
                 $testModel->setId($this->getRequest()->getParam('id'))->delete();
-                
+
                 Mage::getSingleton('adminhtml/session')
 					->addSuccess('Vendor has been deleted.');
                 $this->_redirect('*/*/');
-            } 
-            catch (Exception $e) 
+            }
+            catch (Exception $e)
             {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
@@ -225,86 +224,86 @@ class Medma_MarketPlace_Adminhtml_VendorController extends Mage_Adminhtml_Contro
         }
         $this->_redirect('*/*/');
     }
-    
+
     public function massEnabledAction()
     {
 		$vendorIds = $this->getRequest()->getParam('vendor_id');
-		
-		if(!is_array($vendorIds)) 
+
+		if(!is_array($vendorIds))
 		{
 			Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Please select Item(s).'));
-		} 
-		else 
+		}
+		else
 		{
-			try 
+			try
 			{
 				$userModel = Mage::getModel('admin/user');
-				foreach ($vendorIds as $vendorId) 
+				foreach ($vendorIds as $vendorId)
 				{
 					$userModel->load($vendorId)->setIsActive(1)->save();
 					$this->disableProducts('1', $vendorId);
 				}
 				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('marketplace')->__('Total of %d record(s) were actived.', count($vendorIds)));
-			} 
-			catch (Exception $e) 
+			}
+			catch (Exception $e)
 			{
 				Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
 			}
 		}
-		$this->_redirect('*/*/index');		
+		$this->_redirect('*/*/index');
 	}
-	
+
 	public function massDisabledAction()
     {
 		$vendorIds = $this->getRequest()->getParam('vendor_id');
-		
-		if(!is_array($vendorIds)) 
+
+		if(!is_array($vendorIds))
 		{
 			Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Please select Item(s).'));
-		} 
-		else 
+		}
+		else
 		{
-			try 
+			try
 			{
 				$userModel = Mage::getModel('admin/user');
-				foreach ($vendorIds as $vendorId) 
+				foreach ($vendorIds as $vendorId)
 				{
 					$userModel->load($vendorId)->setIsActive(0)->save();
 					$this->disableProducts('0', $vendorId);
 				}
 				Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('marketplace')->__('Total of %d record(s) were inactivated.', count($vendorIds)));
-			} 
-			catch (Exception $e) 
+			}
+			catch (Exception $e)
 			{
 				Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
 			}
 		}
-		$this->_redirect('*/*/index');		
+		$this->_redirect('*/*/index');
 	}
-    
+
     public function massDeleteAction()
-    {	
+    {
 		$vendorIds = $this->getRequest()->getParam('vendor_id');
-				
+
 		if(!is_array($vendorIds))
 		{
 			Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Please select Item(s).'));
-		} 
-		else 
+		}
+		else
 		{
-			try 
+			try
 			{
 				$userModel = Mage::getModel('admin/user');
-				foreach ($vendorIds as $vendorId) 
+				foreach ($vendorIds as $vendorId)
 				{
 					$this->deleteProducts($vendorId);
 					$userModel->setId($vendorId);
-					$userModel->delete();					
+					$userModel->delete();
 				}
 				Mage::getSingleton('adminhtml/session')->addSuccess(
 				Mage::helper('tax')->__('Total of %d record(s) were deleted.', count($vendorIds)));
-			} 
-			catch (Exception $e) 
+			}
+			catch (Exception $e)
 			{
 				Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
 			}

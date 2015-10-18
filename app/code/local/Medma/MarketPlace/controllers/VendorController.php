@@ -35,7 +35,7 @@ class Medma_MarketPlace_VendorController extends Mage_Core_Controller_Front_Acti
 
 		$this->loadLayout();
 		// Zend_Debug::dump(	$this->getLayout()->getUpdate()->getHandles() ); -->
-							 Mage::log(	$this->getLayout()->getUpdate()->getHandles() ,Zend_log::INFO,'loadLayout.log',true);
+							 Mage::log(	$vendorId ,Zend_log::INFO,'loadLayout.log',true);
 		$this->renderLayout();
 	}
 
@@ -132,7 +132,6 @@ class Medma_MarketPlace_VendorController extends Mage_Core_Controller_Front_Acti
 					 ->setRoleUserId($user->getUserId())
 					 ->saveRelations();
 
-					 Mage::log(	$user ,Zend_log::INFO,'loadLayout.log',true);
 
           $profile = Mage::getModel('marketplace/profile')
 					->setTotalAdminCommission(0)
@@ -145,7 +144,10 @@ class Medma_MarketPlace_VendorController extends Mage_Core_Controller_Front_Acti
 					->setCountry($this->getRequest()->getParam('country', false))
 					->setProofType($this->getRequest()->getParam('proof_type', false))
 					->setVarificationFiles(json_encode($uploaded_files))
+					->setAccountName($this->getRequest()->getParam('account_name', false))
 					->save();
+
+
 
 				if(Mage::helper('marketplace/email')->isEmailAllow('vendor_registration_email', 'enable_registration_email'))
 					Mage::helper('marketplace/email')->vendorRegistrationEmail($data, $uploaded_files, $user->getUserId());

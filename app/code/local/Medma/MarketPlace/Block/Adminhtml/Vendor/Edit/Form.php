@@ -134,10 +134,8 @@ class Medma_MarketPlace_Block_Adminhtml_Vendor_Edit_Form extends Mage_Adminhtml_
                 'style' => 'width: 80px',
                 'options' => array('1' => Mage::helper('adminhtml')->__('Active'), '0' => Mage::helper('adminhtml')->__('Inactive')),
             ));
-        }
 
-        if (Mage::getSingleton('admin/session')->getUser()->getId() != $model->getUserId()) {
-            $base_fieldset->addField('is_vendor', 'select', array(
+          $base_fieldset->addField('is_vendor', 'select', array(
                 'name' => 'is_vendor',
                 'label' => Mage::helper('adminhtml')->__('Vendor permission'),
                 'id' => 'is_vendor',
@@ -251,6 +249,67 @@ class Medma_MarketPlace_Block_Adminhtml_Vendor_Edit_Form extends Mage_Adminhtml_
             'after_element_html' => '<b>' . $this->formatPrice(($profile->getTotalVendorAmount() - $profile->getTotalVendorPaid())) . '</b>',
                 )
         );
+
+        if (Mage::getSingleton('admin/session')->getUser()->getId() != $model->getUserId()) {
+          $profile_fieldset = $form->addFieldset('bank_fieldset', array('legend' => Mage::helper('adminhtml')->__('Bank Information')));
+          $profile_fieldset->addField('account_name', 'text', array(
+              'name' => 'account_name',
+              'label' => Mage::helper('adminhtml')->__('Account Name'),
+              'id' => 'account_name',
+              'value' => $profile->getAccountName(),
+              'title' => Mage::helper('adminhtml')->__('Account Name'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('bank_name', 'text', array(
+              'name' => 'bank_name',
+              'label' => Mage::helper('adminhtml')->__('Bank Name'),
+              'id' => 'bank_name',
+              'value' => $profile->getBankName(),
+              'title' => Mage::helper('adminhtml')->__('Bank Name'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('account_number', 'text', array(
+              'name' => 'account_number',
+              'label' => Mage::helper('adminhtml')->__('Account Number'),
+              'id' => 'account_number',
+              'value' => $profile->getAccountNumber(),
+              'title' => Mage::helper('adminhtml')->__('Account Number'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('ifsc_code', 'text', array(
+              'name' => 'ifsc_code',
+              'label' => Mage::helper('adminhtml')->__('IFSC code'),
+              'id' => 'ifsc_code',
+              'value' => $profile->getIfscCode(),
+              'title' => Mage::helper('adminhtml')->__('IFSC code'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('pan_number', 'text', array(
+              'name' => 'pan_number',
+              'label' => Mage::helper('adminhtml')->__('PAN Number'),
+              'id' => 'pan_number',
+              'value' => $profile->getPanNumber(),
+              'title' => Mage::helper('adminhtml')->__('PAN Number'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('tin_number', 'text', array(
+              'name' => 'tin_number',
+              'label' => Mage::helper('adminhtml')->__('TIN Number'),
+              'id' => 'tin_number',
+              'value' => $profile->getTinNumber(),
+              'title' => Mage::helper('adminhtml')->__('TIN Number'),
+              'required' => true,
+          ));
+          $profile_fieldset->addField('vat_number', 'text', array(
+              'name' => 'vat_number',
+              'label' => Mage::helper('adminhtml')->__('CST/VAT Number'),
+              'id' => 'vat_number',
+              'value' => $profile->getVatNumber(),
+              'title' => Mage::helper('adminhtml')->__('CST/VAT Number'),
+              'required' => true,
+          ));
+        }
+
 
         $this->setForm($form);
 

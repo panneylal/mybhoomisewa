@@ -34,7 +34,7 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
                 ->setFirstname($this->getRequest()->getParam('firstname', false))
                 ->setLastname($this->getRequest()->getParam('lastname', false))
                 ->setEmail(strtolower($this->getRequest()->getParam('email', false)));
-          
+
 
         if ($this->getRequest()->getParam('new_password', false)) {
             $user->setNewPassword($this->getRequest()->getParam('new_password', false));
@@ -98,7 +98,14 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
 						->setMessage($this->getRequest()->getParam('message', false))
 						->setContactNumber($this->getRequest()->getParam('contact_number', false))
 						->setCountry($this->getRequest()->getParam('country', false))
-                        ->setAdminCommissionPercentage($this->getRequest()->getParam('admin_commission_percentage', false));
+            ->setAdminCommissionPercentage($this->getRequest()->getParam('admin_commission_percentage', false))
+            ->setAccountName($this->getRequest()->getParam('account_name', false))
+            ->setBankName($this->getRequest()->getParam('bank_name', false))
+            ->setAccountNumber($this->getRequest()->getParam('account_number', false))
+            ->setIfscCode($this->getRequest()->getParam('ifsc_code', false))
+            ->setPanNumber($this->getRequest()->getParam('pan_number', false))
+            ->setTinNumber($this->getRequest()->getParam('tin_number', false))
+            ->setVatNumber($this->getRequest()->getParam('vat_number', false));
 
                 Mage::dispatchEvent('vendor_profile_save_before', array('profile' => $profile, 'post_data' => $this->getRequest()->getPost()));
 
