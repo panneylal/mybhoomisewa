@@ -17,9 +17,15 @@
  * @category    Medma
  * @package     Medma_MarketPlace
 **/
-class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Action {
+class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Action 
+{
+	protected function _isAllowed()
+	{
+		return true;
+	}
 
-    public function indexAction() {
+    public function indexAction() 
+    {
 
 		$roleId = Mage::helper('marketplace')->getConfig('general', 'vendor_role');
 		

@@ -17,7 +17,12 @@
  * @category    Medma
  * @package     Medma_MarketPlace
 **/
-class Medma_MarketPlace_Adminhtml_TransactionController extends Mage_Adminhtml_Controller_Action {
+class Medma_MarketPlace_Adminhtml_TransactionController extends Mage_Adminhtml_Controller_Action 
+{
+	protected function _isAllowed()
+	{
+		return true;
+	}
 
     protected function _initAction() {
         $this->loadLayout()->_setActiveMenu('medma/marketplace/manage_vendors');
