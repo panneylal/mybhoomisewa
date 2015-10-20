@@ -22,9 +22,10 @@
 <?php $testData = Mage::getSingleton('core/session')->getTestData(); ?>
 <div class="account-create">
     <div class="page-title">
-        <h1><?php echo $this->__('Request Seller') ?></h1>
+        <h2><?php echo $this->__('Request Seller') ?></h2>
     </div>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data">
+	<div class="containder-fluid" style="width:50%; margin: 2%;">
         <div class="fieldset">
             <h2 class="legend"><?php echo $this->__('Personal Information') ?></h2>
             <ul class="form-list">
@@ -157,6 +158,7 @@
             <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
         </div>
         <div><?php echo $this->getChildHtml('captcha') ?></div>
+	</div>
     </form>
     <script type="text/javascript">
     //<![CDATA[
