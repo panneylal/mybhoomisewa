@@ -52,6 +52,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
     public function viewAction() {
         $id = $this->getRequest()->getParam('order_id');
 
+			Mage::log($id,Zend_log::INFO,'loadLayout.log',true);
         if ($id != 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
             Mage::register('current_order', Mage::getModel('sales/order')->load($id));
@@ -99,13 +100,27 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
                 $item->setQty($qty);
                 $shipment->addItem($item);
 
+								$productId = $orderItem->getProductId();
+							     $product = Mage::getModel('catalog/product')->load($productId);
+							   Mage::log($product->debug(),Zend_log::INFO,'loadLayout.log',true);
+							     $attributes=$product->getAttributes();
+							   $value=$product->getCommission();
+								 $vendorPrice=$product->getVendorPrice();
+								 $vendorDiscount=$product->getVendorDiscount();
+
                 $total_price = ($orderItem->getPriceInclTax() * $orderItem->getQtyOrdered());
                 //$total_commission = ($total_price * $admin_commission_percentage) / 100;
                 $total_commission = $orderItem->getCommissionAmount();
-
+/* code edited by kuldeep joshi
                 $total_admin_commission += $total_commission;
-                $total_vendor_amount += ($total_price - $total_commission);
-                $vendor_amount += ($total_price - $total_commission);
+
+							  $total_vendor_amount += ($total_price - $total_commission);
+                $vendor_amount += ($total_price - $total_commission);  */
+								$vendorPricePerItem=$vendorPrice-($vendorPrice*$vendorDiscount)/100;
+							  $total_vendor_amount += $vendorPricePerItem*$qty;
+                $vendor_amount += $vendorPricePerItem*$qty;
+
+								$total_admin_commission +=$total_price- $vendor_amount;
             }
 
             $transactionCollection = Mage::getModel('marketplace/transaction')
@@ -150,7 +165,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
             $shipment->setEmailSent(true);
             $shipment->save();
 
-            Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('marketplace')->__('community The Shipment has been created.'));
+            Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('marketplace')->__('The Shipment has been created.'));
             $this->_redirect('*/*/view', array('order_id' => $orderId));
         } catch (Exception $e) {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('The Shipment cannot be created for the order.'));
