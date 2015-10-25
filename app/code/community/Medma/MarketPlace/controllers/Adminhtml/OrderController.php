@@ -102,7 +102,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 
 								$productId = $orderItem->getProductId();
 							     $product = Mage::getModel('catalog/product')->load($productId);
-							   Mage::log($product->debug(),Zend_log::INFO,'loadLayout.log',true);
+							  
 							     $attributes=$product->getAttributes();
 							   $value=$product->getCommission();
 								 $vendorPrice=$product->getVendorPrice();
