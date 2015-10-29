@@ -25,7 +25,7 @@ if (strlen($apiKey)):
 <?php if ($_helper->getContactLatitude() && $_helper->getContactLatitude()): ?>
                     var myLatlng = new google.maps.LatLng(<?php echo $_helper->getContactLatitude() ?>, <?php echo $_helper->getContactLongitude() ?>) ;
 <?php else: ?>
-                    var myLatlng = new google.maps.LatLng(28.5732907 ,77.22194179999997) ; //some default
+                    var myLatlng = new google.maps.LatLng(30.3118257, 78.0375107) ; //some default
 <?php endif; ?>
                 var mapOptions = {
                     zoom: 11,
