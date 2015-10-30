@@ -22,9 +22,16 @@
 <?php $testData = Mage::getSingleton('core/session')->getTestData(); ?>
 <div class="account-create">
     <div class="page-title">
+<<<<<<< HEAD
         <h1><?php echo $this->__('Request Seller') ?></h1>
     </div>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data">
+=======
+        <h2><?php echo $this->__('Request Seller') ?></h2>
+    </div>
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data">
+	<div class="containder-fluid" style="width:50%; margin: 2%;">
+>>>>>>> commission
         <div class="fieldset">
             <h2 class="legend"><?php echo $this->__('Personal Information') ?></h2>
             <ul class="form-list">
@@ -84,6 +91,7 @@
                 </li>
 			</ul>
 		</div>
+<<<<<<< HEAD
 		<?php if($varificationProofList->count()): ?>
 			<div ng-if="false" class="fieldset">
 				<h2 class="legend"><?php echo $this->__('Verification Proof') ?></h2>
@@ -127,6 +135,9 @@
 				</ul>
 			</div>
 		<?php endif; ?>
+=======
+
+>>>>>>> commission
         <div class="fieldset">
             <h2 class="legend"><?php echo $this->__('Login Information') ?></h2>
             <ul class="form-list">
@@ -152,11 +163,33 @@
                 </li>
             </ul>
         </div>
+        <hr/>
+          <b>Please read these Terms & Condition carefully before submit this form.</b> 
+        <div class="col-md-12" style="height:150px;border-style: ridge;margin-top: 1%;overflow-y: auto;">
+            <p>You may not copy, reproduce, republish, download, make available to the public,
+           or otherwise use our website content in any way except for your own personal, non-commercial use. You also agree not to adapt,
+            alter or create a derivative work from any our website content except for your own personal, non-commercial use. Any other use of our
+            website content requires the prior written permission of us.
+          </p><p>
+            We may change these terms at any time by posting changes online. Please review these terms regularly to
+             ensure you are aware of any changes made by us. Your continued use of our website after changes are
+             posted means you agree to be legally bound by these terms as updated and/or amended.
+            </p>
+        </div>
+        <div class="col-md-12" style="margin-top:1%;">
+          <input type="checkbox" ng-model="isAccept" /> I have read and agree to the Terms & Condition.
+        </div>
+
         <div class="buttons-set">
             <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+<<<<<<< HEAD
             <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+=======
+            <button type="submit" ng-disabled="!isAccept" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+>>>>>>> commission
         </div>
         <div><?php echo $this->getChildHtml('captcha') ?></div>
+	</div>
     </form>
     <script type="text/javascript">
     //<![CDATA[

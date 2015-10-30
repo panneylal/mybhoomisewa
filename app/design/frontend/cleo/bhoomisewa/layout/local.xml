@@ -300,12 +300,30 @@
                 <url helper="customer/getAccountUrl"/>
             </action>
             <!--<remove name="wishlist_link"/> -->
-            <action method="addLink" ifconfig="marketplace/vendor_registration/request_seller_top_link" translate="Request Seller">
-				        <label helper="marketplace/getSellerRegistrationLabelConfig"/>
-				        <url>marketplace/vendor/register</url>
-				        <title>Request Seller</title>
-				        <prepare>true</prepare>
-			      </action>
+            <action method="addLink" translate="label title" module="customer">
+                <label>About Us</label>
+                <url>about-us</url>
+                <title>About Us</title>
+                <prepare>true</prepare>
+                <urlParams/>
+               
+            </action>
+			<action method="addLink" translate="label title" module="customer">
+                <label>Contact Us</label>
+                <url>contacts</url>
+                <title>Contact Us</title>
+                <prepare>true</prepare>
+                <urlParams/>
+               
+            </action>
+			<action method="addLink" ifconfig="marketplace/vendor_registration/request_seller_top_link" translate="Request Seller">
+		        <label helper="marketplace/getSellerRegistrationLabelConfig"/>
+		        <url>marketplace/vendor/register</url>
+				<title>Request Seller</title>
+				<prepare>true</prepare>
+
+			</action>
+			
 
 
             <action method="addLink" translate="label title" module="customer">
@@ -314,9 +332,8 @@
                 <title>Account</title>
                 <prepare/>
                 <urlParams/>
-                <position>15</position>
             </action>
-
+			
         </reference>
 
         <reference  name="head">

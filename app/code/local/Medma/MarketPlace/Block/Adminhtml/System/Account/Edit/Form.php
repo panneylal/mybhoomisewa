@@ -150,19 +150,6 @@ class Medma_MarketPlace_Block_Adminhtml_System_Account_Edit_Form extends Mage_Ad
                 'after_element_html' => '<br />' . $this->_getImage($profile->getImage())
             ));
 
-            $proofList = Mage::helper('marketplace')->getVarificationProofTypeList();
-
-			if(count($proofList) > 1)
-			{
-				$fieldset->addField('proof_type', 'text', array(
-						'name' => 'proof_type',
-						'label' => Mage::helper('adminhtml')->__('Proof Type'),
-						'title' => Mage::helper('adminhtml')->__('Proof Type'),
-						'value' => $profile->getProofType(),
-						'style' => 'display: none;',
-						'after_element_html' => $this->_getFiles($profile->getProofType(), $profile->getVarificationFiles())
-					));
-			}
 
             $fieldset->addField('admin_commission_percentage', 'text', array(
                 'name' => 'admin_commission_percentage',
@@ -258,6 +245,38 @@ class Medma_MarketPlace_Block_Adminhtml_System_Account_Edit_Form extends Mage_Ad
               ));
 
         }
+
+        $fieldset = $form->addFieldset('verification_fieldset', array('legend' => Mage::helper('adminhtml')->__('Verification Information')));
+
+        $proofList = Mage::helper('marketplace')->getVarificationProofTypeList();
+        Mage::log($proofList[1],Zend_log::INFO,'loadLayout.log',true);
+        if(count($proofList) > 1)
+        {
+          $count=0;
+          foreach ($proofList as $tempProof) {
+            if($count==0){
+          /*  code is edited by kuldeep joshi
+             $fieldset->addField('proof_type', 'text', array(
+                  'name' => 'proof_type',
+                  'label' => Mage::helper('adminhtml')->__('Proof Type'),
+                  'title' => Mage::helper('adminhtml')->__('Proof Type'),
+                  'value' => $profile->getProofType(),
+                  'style' => 'display: none;',
+                  'after_element_html' => $this->_getFiles($profile->getProofType(), $profile->getVarificationFiles())
+                ));*/
+              $count=1;
+              continue;
+            }
+
+            $fieldset->addField($tempProof, 'file', array(
+                'name' => $tempProof,
+                'label' => Mage::helper('adminhtml')->__($tempProof),
+                'title' => Mage::helper('adminhtml')->__($tempProof),
+                'after_element_html' => $this->_getFiles($profile->getProofType(), $profile->getVarificationFiles())
+              ));
+            }
+        }
+
         $form->setAction($this->getUrl('*/system_account/save'));
         $form->setMethod('post');
         $form->setUseContainer(true);
@@ -304,7 +323,7 @@ class Medma_MarketPlace_Block_Adminhtml_System_Account_Edit_Form extends Mage_Ad
 		$proofName = $proofTypeModel->getName();
 		if(isset($proofName))
 		{
-			$fileString = '<div style="margin: 0 0 1px;"><b>' . $proofName . '</b></div>';
+			$fileString = '';//--edited by kuldeep '<div style="margin: 0 0 1px;"><b>' . $proofName . '</b></div>';
 			foreach($fileListArray as $file)
 			{
 				$dir_name = 'vendor' . DS . 'varifications';

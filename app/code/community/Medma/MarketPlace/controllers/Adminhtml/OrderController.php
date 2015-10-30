@@ -57,7 +57,9 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
             Mage::register('current_order', Mage::getModel('sales/order')->load($id));
 
             $this->loadLayout()->_setActiveMenu('vendor/orders');
+
             $this->_addContent($this->getLayout()->createBlock('marketplace/adminhtml_order_form'));
+				
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Item does not exist'));
@@ -67,6 +69,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 
     public function shipAction() {
         try {
+
             $orderId = $this->getRequest()->getParam('order_id');
             $order = Mage::getModel('sales/order')->load($orderId);
 
@@ -100,13 +103,31 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
                 $item->setQty($qty);
                 $shipment->addItem($item);
 
+								$productId = $orderItem->getProductId();
+							     $product = Mage::getModel('catalog/product')->load($productId);
+
+							     $attributes=$product->getAttributes();
+							   $value=$product->getCommission();
+								 $vendorPrice=$product->getVendorPrice();
+								 $vendorDiscount=$product->getVendorDiscount();
+
                 $total_price = ($orderItem->getPriceInclTax() * $orderItem->getQtyOrdered());
                 //$total_commission = ($total_price * $admin_commission_percentage) / 100;
                 $total_commission = $orderItem->getCommissionAmount();
+<<<<<<< HEAD
 
+=======
+/* code edited by kuldeep joshi
+>>>>>>> commission
                 $total_admin_commission += $total_commission;
-                $total_vendor_amount += ($total_price - $total_commission);
-                $vendor_amount += ($total_price - $total_commission);
+
+							  $total_vendor_amount += ($total_price - $total_commission);
+                $vendor_amount += ($total_price - $total_commission);  */
+								$vendorPricePerItem=$vendorPrice-($vendorPrice*$vendorDiscount)/100;
+							  $total_vendor_amount += $vendorPricePerItem*$qty;
+                $vendor_amount += $vendorPricePerItem*$qty;
+
+								$total_admin_commission +=$total_price- $vendor_amount;
             }
 
             $transactionCollection = Mage::getModel('marketplace/transaction')

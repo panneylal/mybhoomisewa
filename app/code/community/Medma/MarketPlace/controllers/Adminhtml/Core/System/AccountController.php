@@ -23,12 +23,12 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
 
     public function saveAction()
     {
+ $uploaded_files = array();
 		$userId = Mage::getSingleton('admin/session')->getUser()->getId();
 
         $pwd = null;
 
         $user = Mage::getModel("admin/user")->load($userId);
-
         $user->setId($userId)
                 ->setUsername($this->getRequest()->getParam('username', false))
                 ->setFirstname($this->getRequest()->getParam('firstname', false))
@@ -65,23 +65,7 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
 
             if ($current_user->getRole()->getRoleId() == $roleId)
             {
-                $image = null;
-                if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '')
-                {
-                    $uploader = new Varien_File_Uploader('image');
-                    $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png')); // or pdf or anything
 
-                    $uploader->setAllowRenameFiles(true);
-                    $uploader->setFilesDispersion(false);
-
-					$dir_name = 'vendor' . DS . 'images';
-					$dir_path = Mage::helper('marketplace')->getImagesDir($dir_name);
-
-                    $uploader->save($dir_path, $_FILES['image']['name']);
-                    $image = $_FILES['image']['name'];
-                }
-                else
-                    $image = $this->getRequest()->getParam('old_image', false);
 
                 $profileCollection = Mage::getModel('marketplace/profile')->getCollection()->addFieldToFilter('user_id', $userId);
 
@@ -92,6 +76,55 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
 
                 if (!is_null($image))
                     $profile->setImage($image);
+
+                    $image = null;
+                    $proofList = Mage::helper('marketplace')->getVarificationProofTypeList();
+                  if (isset($_FILES[$proofList[1]]['name']) && $_FILES[$proofList[1]]['name'] != '')
+                  {
+                    $file_types = Mage::helper('marketplace')->getConfig('vendor_registration', 'files_allowed');
+                    $file_types_array = array_map('trim', split(',', $file_types));
+                      Mage::log($_FILES,Zend_log::INFO,'loadLayout.log',true);
+                      $fileUploader = new Varien_File_Uploader($proofList[1]);
+                      $fileUploader->setAllowedExtensions($file_types_array);
+
+          						$fileUploader->setAllowRenameFiles(false);
+          						$fileUploader->setFilesDispersion(false);
+                  $dir_name = 'vendor' . DS . 'varifications';
+                  $dir_path = Mage::helper('marketplace')->getImagesDir($dir_name);
+
+                      $fileUploader->save($dir_path, $_FILES[$proofList[1]]['name']);
+
+                        $uploaded_files[] = $_FILES[$proofList[1]]['name'];
+                        Mage::log($uploaded_files,Zend_log::INFO,'loadLayout.log',true);
+
+
+                      /*  $fileList=$profile->getVarificationFiles();
+                        $fileListArray = json_decode($fileList, true);*/
+
+                        $profile->setProofType(1);
+
+                  }
+                  else
+                      $document = $this->getRequest()->getParam('old_image', false);
+
+
+
+                    if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != '')
+                    {
+                        $uploader = new Varien_File_Uploader('image');
+                        $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png')); // or pdf or anything
+
+                        $uploader->setAllowRenameFiles(true);
+                        $uploader->setFilesDispersion(false);
+                $dir_name = 'vendor' . DS . 'images';
+                $dir_path = Mage::helper('marketplace')->getImagesDir($dir_name);
+
+                        $uploader->save($dir_path, $_FILES['image']['name']);
+                        $image = $_FILES['image']['name'];
+                    }
+                    else
+                        $image = $this->getRequest()->getParam('old_image', false);
+
 
                 $profile->setUserId($userId)
 						->setShopName($this->getRequest()->getParam('shop_name', false))
@@ -105,7 +138,9 @@ class Medma_MarketPlace_Adminhtml_Core_System_AccountController extends Mage_Adm
             ->setIfscCode($this->getRequest()->getParam('ifsc_code', false))
             ->setPanNumber($this->getRequest()->getParam('pan_number', false))
             ->setTinNumber($this->getRequest()->getParam('tin_number', false))
+            ->setVarificationFiles(json_encode($uploaded_files))
             ->setVatNumber($this->getRequest()->getParam('vat_number', false));
+
 
                 Mage::dispatchEvent('vendor_profile_save_before', array('profile' => $profile, 'post_data' => $this->getRequest()->getPost()));
 
