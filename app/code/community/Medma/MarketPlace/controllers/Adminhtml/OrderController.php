@@ -52,13 +52,14 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
     public function viewAction() {
         $id = $this->getRequest()->getParam('order_id');
 
-			Mage::log($id,Zend_log::INFO,'loadLayout.log',true);
         if ($id != 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
             Mage::register('current_order', Mage::getModel('sales/order')->load($id));
 
             $this->loadLayout()->_setActiveMenu('vendor/orders');
+
             $this->_addContent($this->getLayout()->createBlock('marketplace/adminhtml_order_form'));
+				
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Item does not exist'));
@@ -102,7 +103,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 
 								$productId = $orderItem->getProductId();
 							     $product = Mage::getModel('catalog/product')->load($productId);
-							  
+
 							     $attributes=$product->getAttributes();
 							   $value=$product->getCommission();
 								 $vendorPrice=$product->getVendorPrice();

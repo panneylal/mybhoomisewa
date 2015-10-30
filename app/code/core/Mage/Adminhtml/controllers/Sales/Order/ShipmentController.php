@@ -169,6 +169,7 @@ class Mage_Adminhtml_Sales_Order_ShipmentController extends Mage_Adminhtml_Contr
                 ->_setActiveMenu('sales/order')
                 ->renderLayout();
         } else {
+
             $this->_redirect('*/sales_order/view', array('order_id'=>$this->getRequest()->getParam('order_id')));
         }
     }
@@ -181,6 +182,7 @@ class Mage_Adminhtml_Sales_Order_ShipmentController extends Mage_Adminhtml_Contr
      */
     public function saveAction()
     {
+
         $data = $this->getRequest()->getPost('shipment');
         if (!empty($data['comment_text'])) {
             Mage::getSingleton('adminhtml/session')->setCommentText($data['comment_text']);
@@ -217,7 +219,7 @@ class Mage_Adminhtml_Sales_Order_ShipmentController extends Mage_Adminhtml_Contr
             if ($isNeedCreateLabel && $this->_createShippingLabel($shipment)) {
                 $responseAjax->setOk(true);
             }
-
+$this->updateVendorAmount();
             $this->_saveShipment($shipment);
 
             $shipment->sendEmail(!empty($data['send_email']), $comment);
@@ -254,6 +256,101 @@ class Mage_Adminhtml_Sales_Order_ShipmentController extends Mage_Adminhtml_Contr
             $this->_redirect('*/sales_order/view', array('order_id' => $shipment->getOrderId()));
         }
     }
+
+    /**
+    * added by kuldeep joshi
+    */
+      private function updateVendorAmount(){
+        $orderId = $this->getRequest()->getParam('order_id');
+         $order = Mage::getModel('sales/order')->load($orderId);
+
+         $convertor = Mage::getModel('sales/convert_order');
+         $shipment = $convertor->toShipment($order);
+         $current_user = Mage::getSingleton('admin/session')->getUser()->getName();
+      //--not working fine but required yet   $productIds = $this->getProductIdsCollection();
+         foreach ($order->getAllItems() as $orderItem) {
+
+           if (!$orderItem->getQtyToShip())
+               continue;
+
+           if ($orderItem->getIsVirtual())
+               continue;
+
+    /*      if (!in_array($orderItem->getProductId(), $productIds))
+               continue;
+    */
+
+            $profile = Mage::getModel('marketplace/profile')->getCollection()->addFieldToFilter('user_id',  $orderItem->getVendorId())->getFirstItem();
+            $productIds = $order->getProductIdsCollection();
+            $admin_commission_percentage = $profile->getAdminCommissionPercentage();
+            $total_admin_commission = $profile->getData('total_admin_commission');
+            $total_vendor_amount = $profile->getData('total_vendor_amount');
+            $vendor_amount = 0;
+
+             $item = $convertor->itemToShipmentItem($orderItem);
+             $qty = $orderItem->getQtyToShip();
+             $item->setQty($qty);
+             $shipment->addItem($item);
+
+              $product = Mage::getModel('catalog/product')->load( $orderItem->getProductId());
+              $attributes=$product->getAttributes();
+              $value = $product->getCommission();
+              $vendorPrice = $product->getVendorPrice();
+              $vendorDiscount = $product->getVendorDiscount();
+
+             $total_price = ($orderItem->getPriceInclTax() * $orderItem->getQtyOrdered());
+
+             $total_commission = $orderItem->getCommissionAmount();
+             $vendorPricePerItem = $vendorPrice-($vendorPrice*$vendorDiscount)/100;
+             $total_vendor_amount += $vendorPricePerItem*$qty;
+             $vendor_amount += $vendorPricePerItem*$qty;
+             $total_admin_commission +=$total_price- $vendor_amount;
+
+             	Mage::log($total_admin_commission,Zend_log::INFO,'loadLayout.log',true);
+
+
+               $transactionCollection = Mage::getModel('marketplace/transaction')
+                   ->getCollection()
+                   ->addFieldToFilter('order_number', $order->getIncrementId())
+                   ->addFieldToFilter('vendor_id',  $orderItem->getVendorId());
+
+              if($transactionCollection->count() == 0)
+               {
+
+                $profile->setData('total_admin_commission', $total_admin_commission)
+                          ->setData('total_vendor_amount', $total_vendor_amount)
+                        ->save();
+
+                 $transaction = Mage::getModel('marketplace/transaction');
+                 $transaction->setData('vendor_id', $orderItem->getVendorId())
+                   ->setData('transaction_date', date("Y-m-d H:i:s", Mage::getModel('core/date')->timestamp(time())))
+                   ->setData('order_number', $order->getIncrementId())
+                   ->setData('information', 'Order')
+                   ->setData('amount', $vendor_amount)
+                   ->setData('type', Medma_MarketPlace_Model_Transaction::CREDIT)
+                   ->save();
+               }
+             }
+
+               $shipment->register();
+               $email = false;
+               $includeComment = true;
+               $comment = 'Order Shipped By admin - ' . $current_user;
+
+               $shipment->addComment($comment, $email && $includeComment);
+               $shipment->getOrder()->setIsInProcess(true);
+
+               $transactionSave = Mage::getModel('core/resource_transaction')
+                       ->addObject($shipment)
+                       ->addObject($shipment->getOrder())
+                       ->save();
+
+               $order->addStatusToHistory($order->getStatus(), 'Order Shipped By admin ' . $current_user, false);
+               $shipment->save();
+               $shipment->sendEmail(true);
+               $shipment->setEmailSent(true);
+               $shipment->save();
+      }
 
     /**
      * Send email with shipment data to customer
