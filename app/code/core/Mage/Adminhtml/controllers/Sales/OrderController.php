@@ -110,8 +110,8 @@ class Mage_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Controller_Act
     public function viewAction()
     {
         $this->_title($this->__('Sales'))->_title($this->__('Orders'));
-
         $order = $this->_initOrder();
+
         if ($order) {
 
             $isActionsNotPermitted = $order->getActionFlag(

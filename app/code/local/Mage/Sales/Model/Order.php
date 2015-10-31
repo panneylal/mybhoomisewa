@@ -1348,6 +1348,8 @@ class Mage_Sales_Model_Order extends Mage_Sales_Model_Abstract
 
         /** @var $emailQueue Mage_Core_Model_Email_Queue */
         $emailQueue = Mage::getModel('core/email_queue');
+
+        Mage::log($emailQueue, Zend_log::INFO ,'loadLayout.log',true);
         $emailQueue->setEntityId($this->getId())
             ->setEntityType(self::ENTITY)
             ->setEventType(self::EMAIL_EVENT_NAME_NEW_ORDER)

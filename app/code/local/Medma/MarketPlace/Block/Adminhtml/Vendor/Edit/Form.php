@@ -206,17 +206,7 @@ class Medma_MarketPlace_Block_Adminhtml_Vendor_Edit_Form extends Mage_Adminhtml_
 
         $proofList = Mage::helper('marketplace')->getVarificationProofTypeList();
 
-        if(count($proofList) > 1)
-        {
-			$profile_fieldset->addField('proof_type', 'text', array(
-					'name' => 'proof_type',
-					'label' => Mage::helper('adminhtml')->__('Proof Type'),
-					'title' => Mage::helper('adminhtml')->__('Proof Type'),
-					'value' => $profile->getProofType(),
-					'style' => 'display: none;',
-					'after_element_html' => $this->_getFiles($profile->getProofType(), $profile->getVarificationFiles())
-				));
-        }
+
 
         $profile_fieldset->addField('admin_commission_percentage', 'text', array(
             'name' => 'admin_commission_percentage',
@@ -308,7 +298,21 @@ class Medma_MarketPlace_Block_Adminhtml_Vendor_Edit_Form extends Mage_Adminhtml_
               'title' => Mage::helper('adminhtml')->__('CST/VAT Number'),
               'required' => true,
           ));
-        }
+
+  $profile_fieldset = $form->addFieldset('verification_fieldset', array('legend' => Mage::helper('adminhtml')->__('Verification Information')));
+          if(count($proofList) > 1)
+          {
+            $profile_fieldset->addField('proof_type', 'text', array(
+              'name' => 'proof_type',
+              'label' => Mage::helper('adminhtml')->__('Proof Type'),
+              'title' => Mage::helper('adminhtml')->__('Proof Type'),
+              'value' => $profile->getProofType(),
+              'style' => 'display: none;',
+              'after_element_html' => $this->_getFiles($profile->getProofType(), $profile->getVarificationFiles())
+            ));
+          }
+
+      }
 
 
         $this->setForm($form);

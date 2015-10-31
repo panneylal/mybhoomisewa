@@ -13,22 +13,22 @@
  * Contact us Support does not guarantee correct work of this package
  * on any other Magento edition except Magento COMMUNITY edition.
  * =================================================================
- * 
+ *
  * @category    Medma
  * @package     Medma_MarketPlace
 **/
-class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Action 
+class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed()
 	{
 		return true;
 	}
 
-    public function indexAction() 
+    public function indexAction()
     {
 
 		$roleId = Mage::helper('marketplace')->getConfig('general', 'vendor_role');
-		
+
         // $role = Mage::getModel('admin/roles')->load($roleId);
 
         $current_user = Mage::getSingleton('admin/session')->getUser();
@@ -57,7 +57,9 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
             Mage::register('current_order', Mage::getModel('sales/order')->load($id));
 
             $this->loadLayout()->_setActiveMenu('vendor/orders');
+
             $this->_addContent($this->getLayout()->createBlock('marketplace/adminhtml_order_form'));
+				
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('marketplace')->__('Item does not exist'));
@@ -67,6 +69,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 
     public function shipAction() {
         try {
+
             $orderId = $this->getRequest()->getParam('order_id');
             $order = Mage::getModel('sales/order')->load($orderId);
             $convertor = Mage::getModel('sales/convert_order');
@@ -98,26 +101,40 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
                 $item->setQty($qty);
                 $shipment->addItem($item);
 
+								$productId = $orderItem->getProductId();
+							     $product = Mage::getModel('catalog/product')->load($productId);
+
+							     $attributes=$product->getAttributes();
+							   $value=$product->getCommission();
+								 $vendorPrice=$product->getVendorPrice();
+								 $vendorDiscount=$product->getVendorDiscount();
+
                 $total_price = ($orderItem->getPriceInclTax() * $orderItem->getQtyOrdered());
                 //$total_commission = ($total_price * $admin_commission_percentage) / 100;
                 $total_commission = $orderItem->getCommissionAmount();
-                
+/* code edited by kuldeep joshi
                 $total_admin_commission += $total_commission;
-                $total_vendor_amount += ($total_price - $total_commission);
-                $vendor_amount += ($total_price - $total_commission);
+
+							  $total_vendor_amount += ($total_price - $total_commission);
+                $vendor_amount += ($total_price - $total_commission);  */
+								$vendorPricePerItem=$vendorPrice-($vendorPrice*$vendorDiscount)/100;
+							  $total_vendor_amount += $vendorPricePerItem*$qty;
+                $vendor_amount += $vendorPricePerItem*$qty;
+
+								$total_admin_commission +=$total_price- $vendor_amount;
             }
-                    
+
             $transactionCollection = Mage::getModel('marketplace/transaction')
 				->getCollection()
 				->addFieldToFilter('order_number', $order->getIncrementId())
 				->addFieldToFilter('vendor_id', $current_user_id);
-				
+
 			if($transactionCollection->count() == 0)
 			{
 				$profile->setData('total_admin_commission', $total_admin_commission)
                     ->setData('total_vendor_amount', $total_vendor_amount)
                     ->save();
-                    
+
 				$transaction = Mage::getModel('marketplace/transaction');
 				$transaction->setData('vendor_id', $current_user_id)
 					->setData('transaction_date', date("Y-m-d H:i:s", Mage::getModel('core/date')->timestamp(time())))
@@ -127,7 +144,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 					->setData('type', Medma_MarketPlace_Model_Transaction::CREDIT)
 					->save();
 			}
-			
+
             $shipment->register();
             $email = false;
             $includeComment = true;
@@ -212,7 +229,7 @@ class Medma_MarketPlace_Adminhtml_OrderController extends Mage_Adminhtml_Control
 
     public function getProductIdsCollection() {
         $roleId = Mage::helper('marketplace')->getConfig('general', 'vendor_role');
-		
+
         // $role = Mage::getModel('admin/roles')->load($roleId);
 
         $current_user = Mage::getSingleton('admin/session')->getUser();
